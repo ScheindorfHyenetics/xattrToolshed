@@ -74,7 +74,6 @@ then DESTFILE=$1
          done
     fi
     if [[ "$2" = "view" ]]
-        then echo  "File: $DESTFILE          Author: " $(getfattr --only-values -n user.author "$DESTFILE" 2>/dev/null)
-             echo "Tags: " $(getfattr --only-values -n user.tags "$DESTFILE" 2>/dev/null)
+        then echo  "File: $DESTFILE          Author: " $(getfattr --only-values -n user.author "$DESTFILE" 2>/dev/null) "  |  Tags: " $(getfattr --only-values -n user.tags "$DESTFILE" 2>/dev/null)
     fi
 fi

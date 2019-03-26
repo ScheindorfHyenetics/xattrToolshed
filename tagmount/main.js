@@ -34,8 +34,6 @@ console.log("mountPath=%s",mountPath);
 var userAuthor = {'_':[]};
 var userTags = {};
 
-
-
 let thd_recurse_and_fill = function recurse_and_fill(path) {
     let dir = fs.readdirSync(path);
     console.log('enter %s',path);
@@ -252,7 +250,20 @@ fuse.mount(mountPath, {
 process.on('SIGINT', function () {
   fuse.unmount(mountPath, function (err) {
     if (err) {
-      console.log('filesystem at ' + mountPath + ' not unmounted', err)
+      console.log('filesystem at ' + mountPath + ' not unmounted')
+      console.log('Error :');
+      console.log(err);
+    } else {
+      console.log('filesystem at ' + mountPath + ' unmounted')
+    }
+  })
+})
+process.on('SIGTERM', function () {
+  fuse.unmount(mountPath, function (err) {
+    if (err) {
+      console.log('filesystem at ' + mountPath + ' not unmounted')
+      console.log('Error :');
+      console.log(err);
     } else {
       console.log('filesystem at ' + mountPath + ' unmounted')
     }
